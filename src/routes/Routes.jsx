@@ -15,6 +15,26 @@ export const router = createBrowserRouter([
         index: true,
         Component: Home,
       },
+      {
+        path: '/services',
+        
+      },
+      {
+        path: '/coverage',
+        
+      },
+      {
+        path: '/aboutUs',
+        
+      },
+      {
+        path: '/pricing',
+        
+      },
+      {
+        path: '/beArider',
+        
+      },
     ],
   },
 ]);
