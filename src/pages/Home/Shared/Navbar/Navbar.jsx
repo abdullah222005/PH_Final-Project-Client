@@ -83,7 +83,7 @@ const Navbar = () => {
           <button className="btn rounded py-1">
             Sign In
           </button>
-          <button className="btn bg-primary rounded py-1">
+          <button className="btn hidden md:block bg-primary rounded py-1">
             Be a rider
           </button>
           <BsArrowUpRightCircleFill className="text-4xl -ml-4"/>
