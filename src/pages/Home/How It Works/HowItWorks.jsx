@@ -2,6 +2,7 @@ import React from 'react';
 import vanIcon from "../../../assets/bookingIcon.png";
 
 const HowItWorks = () => {
+  //Section's Data
     const data = [
       {
         title: "Booking Pick & Drop",
@@ -20,6 +21,7 @@ const HowItWorks = () => {
         desc: "From personal packages to business shipments — we deliver on time, every time."
       }
     ];
+
     return (
       <div className='my-5 md:my-10 lg:my-15'>
         <h1 className="text-secondary text-4xl font-semibold mb-5">How it Works</h1>
