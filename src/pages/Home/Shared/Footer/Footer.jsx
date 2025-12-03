@@ -17,6 +17,8 @@ const Footer = () => {
         }}
         className="bg-[#FCFAE0] text-black pt-10"
       >
+
+        {/* Newsletter Section */}
         {location.pathname === "/" && (
           <newsletter>
             <div className="text-center">
@@ -46,7 +48,8 @@ const Footer = () => {
           </newsletter>
         )}
 
-        <div className="max-w-10/12 mx-auto footer sm:footer-horizontal mt-5">
+        {/* Footer Contents */}
+        <div className="max-w-10/12 mx-auto footer sm:footer-horizontal">
           <nav>
             <Logo/>
             <p className="text-[17px]">
@@ -110,6 +113,8 @@ const Footer = () => {
             </div>
           </nav>
         </div>
+
+        {/* Copyright Area */}
         <div className="max-w-10/12 mx-auto flex justify-center border-t-2 mt-5 py-5 gap-5">
           <svg
             width="36"

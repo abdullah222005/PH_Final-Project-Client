@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import Home from "../../Home/Home";
 import Logo from "../../../../components/logo/Logo";
-import { FaArrowAltCircleRight } from "react-icons/fa";
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 // Active link style function
 const getLinkStyle = ({ isActive }) => {
@@ -15,6 +15,7 @@ const getLinkStyle = ({ isActive }) => {
 
 const Navbar = () => {
   const links = (
+    // Navlinks Here 
     <>
       <li>
         <NavLink to="/services" style={getLinkStyle}>
@@ -69,16 +70,23 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Logo/>
+
+          {/* Logo Here  */}
+          <Logo />
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-10">{links}</ul>
         </div>
-        <div className="navbar-end">
-          <button className="btn bg-primary px-2 rounded py-1">
+
+        {/* Buttons here  */}
+        <div className="navbar-end gap-5">
+          <button className="btn rounded py-1">
+            Sign In
+          </button>
+          <button className="btn bg-primary rounded py-1">
             Be a rider
           </button>
-          <FaArrowAltCircleRight/>
+          <BsArrowUpRightCircleFill className="text-4xl -ml-4"/>
         </div>
       </div>
     </div>

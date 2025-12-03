@@ -1,17 +1,12 @@
 // Banner.jsx
 import React from "react";
+import deliveryMan from "../../assets/tiny-deliveryman.png";
+import deliveryManVehicle from "../../assets/big-deliveryman.png";
 
-const Banner = ({
-  imageUrl = "https://via.placeholder.com/1200x500",
-  linkUrl = "#",
-  title = "Your Title Here",
-  paragraph = "You can customize this",
-  buttonText = "Explore Now",
-  onButtonClick = null,
-}) => {
+const Banner = () => {
   return (
     <section className="w-full">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 bg-white">
         <div className="relative rounded-xl overflow-hidden shadow-lg">
         
           <a href={linkUrl} target="_blank" rel="noopener noreferrer" className="block">
