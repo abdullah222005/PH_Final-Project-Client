@@ -31,7 +31,7 @@ const FAQ = () => {
   }
   return (
     <div className="my-5 md:my-10 lg:my-15">
-      <h1 className="text-4xl mb-5 text-center text-secondary">
+      <h1 className="text-2xl md:text-4xl mb-5 text-center text-secondary">
         Frequently Asked Question (FAQ)
       </h1>
       <p className="text-center text-gray-700">

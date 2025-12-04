@@ -24,7 +24,7 @@ const HowItWorks = () => {
 
     return (
       <div className='my-5 md:my-10 lg:my-15'>
-        <h1 className="text-secondary text-4xl font-semibold mb-5">How it Works</h1>
+        <h1 className="text-secondary text-2xl md:text-4xl font-semibold mb-5">How it Works</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {data.map((info, index) => (
             <div key={index} info={info} className="bg-white p-5 rounded-2xl">
