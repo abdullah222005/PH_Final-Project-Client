@@ -1,6 +1,6 @@
 import React from 'react';
-import bannerBG from "../../assets/be-a-merchant-bg.png";
-import locationMerchant from "../../assets/location-merchant.png";
+import bannerBG from "../../../assets/be-a-merchant-bg.png";
+import locationMerchant from "../../../assets/location-merchant.png";
 
 const Banner = () => {
     return (

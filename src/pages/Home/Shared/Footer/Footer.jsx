@@ -49,7 +49,7 @@ const Footer = () => {
         )}
 
         {/* Footer Contents */}
-        <div className="max-w-10/12 mx-auto footer sm:footer-horizontal">
+        <div className="max-w-10/12 mx-auto footer sm:footer-horizontal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           <nav>
             <Logo/>
             <p className="text-[17px]">
