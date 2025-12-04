@@ -54,18 +54,18 @@ const HeroBanner = () => {
   );
 
   return (
-    <Carousel showThumbs={false} autoPlay={false} infiniteLoop={true}>
+    <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
       <div className="relative my-5 md:my-10 lg:my-15">
         <img src={banner1} className="w-full" />
         {ResponsiveButtons}
       </div>
 
-      <div className="relative">
+      <div className="relative  my-5 md:my-10 lg:my-15">
         <img src={banner2} className="w-full" />
         {ResponsiveButtons}
       </div>
 
-      <div className="relative">
+      <div className="relative  my-5 md:my-10 lg:my-15">
         <img src={banner3} className="w-full" />
         {ResponsiveButtons}
       </div>

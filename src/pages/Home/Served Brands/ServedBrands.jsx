@@ -12,8 +12,11 @@ const brandLogos = [amazon, amazonVector, casio, moonstar, randstad, star, start
 
 const ServedBrands = () => {
     return (
-      <div className="relative w-full">
-        <div className="absolute inset-0 overflow-hidden">
+      <div className="my-5 md:my-10 lg:my-15 pb-10 lg:pb-20">
+        <h1 className="text-4xl font-semibold text-secondary my-15 lg:my-20 text-center">
+          We've helped thousands of sales teams
+        </h1>
+        <div className="w-full overflow-hidden">
           <Marquee
             pauseOnHover={false}
             speed={111}
