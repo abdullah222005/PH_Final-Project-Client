@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import Home from "../../Home/Home";
 import Logo from "../../../../components/logo/Logo";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
+import useAuth from "../../../../hooks/useAuth";
 
 // Active link style function
 const getLinkStyle = ({ isActive }) => {
@@ -14,6 +15,18 @@ const getLinkStyle = ({ isActive }) => {
 };
 
 const Navbar = () => {
+  const {user, logOutUser} = useAuth();
+
+  const handleLogOut =()=>{
+    logOutUser()
+    .then(result =>{
+      console.log(result); 
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+  }
+
   const links = (
     // Navlinks Here 
     <>
@@ -80,9 +93,13 @@ const Navbar = () => {
 
         {/* Buttons here  */}
         <div className="navbar-end gap-5">
-          <Link to='/auth/login'>
-            <button className="btn rounded py-1">Sign In</button>
-          </Link>
+          {user ? (
+            <button onClick={handleLogOut} className="btn bg-secondary text-white">LogOut</button>
+          ) : (
+            <Link to="/auth/login">
+              <button className="btn rounded py-1">Sign In</button>
+            </Link>
+          )}
           <button className="btn hidden md:block bg-primary rounded py-1">
             Be a rider
           </button>

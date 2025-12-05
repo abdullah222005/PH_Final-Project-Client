@@ -8,9 +8,9 @@ const AuthLayout = () => {
   return (
     <div>
       <div className="flex flex-col md:flex-row gap-5">
-        <div className="flex-1 ml-5 md:ml-11 lg:ml-22">
+        <div className="flex-1 ml-5 md:ml-10 lg:ml-22">
           <Logo />
-          <div className="md:ml-11 lg:ml-22">
+          <div className="-ml-2 mr-3 md:ml-5 lg:ml-22 max-w-[444px] mx-auto">
             <Outlet />
           </div>
         </div>
