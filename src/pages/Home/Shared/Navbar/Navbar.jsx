@@ -80,13 +80,13 @@ const Navbar = () => {
 
         {/* Buttons here  */}
         <div className="navbar-end gap-5">
-          <button className="btn rounded py-1">
-            Sign In
-          </button>
+          <Link to='/auth/login'>
+            <button className="btn rounded py-1">Sign In</button>
+          </Link>
           <button className="btn hidden md:block bg-primary rounded py-1">
             Be a rider
           </button>
-          <BsArrowUpRightCircleFill className="text-4xl -ml-4"/>
+          <BsArrowUpRightCircleFill className="text-4xl -ml-4" />
         </div>
       </div>
     </div>
