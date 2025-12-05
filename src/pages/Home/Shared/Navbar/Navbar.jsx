@@ -15,20 +15,20 @@ const getLinkStyle = ({ isActive }) => {
 };
 
 const Navbar = () => {
-  const {user, logOutUser} = useAuth();
+  const { user, logOutUser } = useAuth();
 
-  const handleLogOut =()=>{
+  const handleLogOut = () => {
     logOutUser()
-    .then(result =>{
-      console.log(result); 
-    })
-    .catch(error=>{
-      console.log(error);
-    })
-  }
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const links = (
-    // Navlinks Here 
+    // Navlinks Here
     <>
       <li>
         <NavLink to="/services" style={getLinkStyle}>
@@ -94,15 +94,22 @@ const Navbar = () => {
         {/* Buttons here  */}
         <div className="navbar-end gap-5">
           {user ? (
-            <button onClick={handleLogOut} className="btn bg-secondary text-white">LogOut</button>
+            <button
+              onClick={handleLogOut}
+              className="btn bg-secondary text-white"
+            >
+              LogOut
+            </button>
           ) : (
             <Link to="/auth/login">
               <button className="btn rounded py-1">Sign In</button>
             </Link>
           )}
-          <button className="btn hidden md:block bg-primary rounded py-1">
-            Be a rider
-          </button>
+          <Link to="/beArider">
+            <button className="btn hidden md:block bg-primary rounded py-1">
+              Be a rider
+            </button>
+          </Link>
           <BsArrowUpRightCircleFill className="text-4xl -ml-4" />
         </div>
       </div>

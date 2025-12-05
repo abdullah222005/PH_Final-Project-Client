@@ -29,6 +29,7 @@ const Reviews = ({reviewsPromise}) => {
             centeredSlides={true}
             slidesPerView={"auto"}
             spaceBetween={20}
+            initialSlide={1}
             coverflowEffect={{
               rotate: 55,
               stretch: 0,

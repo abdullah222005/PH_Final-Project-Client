@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import banner1 from "../../../assets/banner/banner1.png";
 import banner2 from "../../../assets/banner/banner2.png";
 import banner3 from "../../../assets/banner/banner3.png";
@@ -41,15 +41,17 @@ const HeroBanner = () => {
       />
 
       {/* Rider button */}
-      <button
-        className="
+      <Link to="/beArider">
+        <button
+          className="
           px-2 py-1 bg-white rounded-xl text-sm
           md:px-5 md:py-2 md:btn
           lg:text-lg lg:px-8 lg:py-6 lg:btn
         "
-      >
-        Be a rider
-      </button>
+        >
+          Be a rider
+        </button>
+      </Link>
     </div>
   );
 
