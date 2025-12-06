@@ -55,6 +55,11 @@ const Navbar = () => {
           Send Parcel
         </NavLink>
       </li>
+      {
+        user && <>
+          <li><NavLink to='/dashboard/my-parcels'>My Parcels</NavLink></li>
+        </>
+      }
     </>
   );
   return (

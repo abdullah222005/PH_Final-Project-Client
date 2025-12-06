@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Root from "../Root/Root";
+import RootLayout from "../Layouts/RootLayout";
 import Home from "../pages/Home/Home/Home";
 import ErrorPage from "../pages/Error/ErrorPage";
 import Coverage from "../pages/Coverage/Coverage";
@@ -10,11 +10,13 @@ import RegisterPage from "../Auth/Auth Pages/Register Page/RegisterPage";
 import PrivateRoute from "./PrivateRoute";
 import Rider from "../pages/Be A Rider/Rider";
 import SendParcel from "../pages/Send Parcel/SendParcel";
+import DashLayout from "../Layouts/DashLayout";
+import MyParcels from "../pages/Dashboard/My Parcels/MyParcels";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Root,
+    Component: RootLayout,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -69,4 +71,16 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute>
+      <DashLayout/>
+    </PrivateRoute>,
+    children: [
+      {
+        path: 'my-parcels',
+        Component: MyParcels
+      }
+    ]
+  }
 ]);

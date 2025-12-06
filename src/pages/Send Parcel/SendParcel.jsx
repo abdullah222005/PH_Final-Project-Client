@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const SendParcel = () => {
   const {
@@ -9,6 +12,10 @@ const SendParcel = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const {user} = useAuth();
+
+  const axiosSecure = useAxiosSecure();
 
   const serviceCenters = useLoaderData();
   const regionsDuplicate = serviceCenters.map((c) => c.region);
@@ -50,6 +57,48 @@ const SendParcel = () => {
       }
     }
     console.log(cost);
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you agree with our charge?",
+        text: `Your cost is ${cost} TAKA!`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, I agree!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: "Confirmed Booking!",
+            text: "Now, you will be redirected for transaction..",
+            icon: "success",
+          });
+            //Save the parcel to the database
+            axiosSecure.post('/parcels', data)
+            .then(res=>{
+                console.log('after saving the parcel', res.data);
+            })
+
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled Booking",
+            text: "You denied to send your parcel.",
+            icon: "error",
+          });
+        }
+      });
   };
 
   return (
@@ -137,6 +186,7 @@ const SendParcel = () => {
                   {...register("senderName", { required: true })}
                   className="input input-bordered w-full"
                   placeholder="Sender Name"
+                  defaultValue={user?.displayName} readOnly
                 />
                 {errors.senderName && (
                   <p className="text-red-500 text-xs mt-1">Required</p>
@@ -152,6 +202,7 @@ const SendParcel = () => {
                   {...register("senderEmail", { required: true })}
                   className="input input-bordered w-full"
                   placeholder="Sender Email"
+                  defaultValue={user?.email} readOnly
                 />
                 {errors.senderEmail && (
                   <p className="text-red-500 text-xs mt-1">Required</p>
