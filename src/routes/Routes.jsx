@@ -9,6 +9,7 @@ import LoginPage from "../Auth/Auth Pages/Login Page/LoginPage";
 import RegisterPage from "../Auth/Auth Pages/Register Page/RegisterPage";
 import PrivateRoute from "./PrivateRoute";
 import Rider from "../pages/Be A Rider/Rider";
+import SendParcel from "../pages/Send Parcel/SendParcel";
 
 export const router = createBrowserRouter([
   {
@@ -22,42 +23,50 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: '/services',
-        
+        path: "/services",
       },
       {
-        path: '/coverage',
+        path: "/coverage",
         Component: Coverage,
-        loader: ()=> fetch('/warehouses.json').then(res=> res.json())
+        loader: () => fetch("/warehouses.json").then((res) => res.json()),
       },
       {
-        path: '/aboutUs',
-        
+        path: "/aboutUs",
       },
       {
-        path: '/pricing',
-        
+        path: "/pricing",
       },
       {
-        path: '/beArider',
-        element: <PrivateRoute>
-          <Rider/>
-        </PrivateRoute>
+        path: "/sendParcel",
+        loader: () => fetch("/warehouses.json").then((res) => res.json()),
+        element: (
+          <PrivateRoute>
+            <SendParcel />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/beArider",
+        element: (
+          <PrivateRoute>
+            <Rider />
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
-    path: '/',
+    path: "/",
     Component: AuthLayout,
     children: [
       {
-        path: '/auth/login',
-        Component: LoginPage
+        path: "/auth/login",
+        Component: LoginPage,
       },
       {
-        path: '/auth/register',
-        Component: RegisterPage
-      }
-    ]
-  }
+        path: "/auth/register",
+        Component: RegisterPage,
+      },
+    ],
+  },
 ]);

@@ -51,8 +51,8 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/beArider" style={getLinkStyle}>
-          Be a Rider
+        <NavLink to="/sendParcel" style={getLinkStyle}>
+          Send Parcel
         </NavLink>
       </li>
     </>
