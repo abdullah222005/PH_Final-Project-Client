@@ -4,7 +4,7 @@ import { BaggageClaim } from 'lucide-react';
 
 const DashLayout = () => {
     return (
-        <div className="drawer lg:drawer-open max-w-7xl mx-auto">
+        <div className="drawer lg:drawer-open">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
             {/* Navbar */}
@@ -30,7 +30,7 @@ const DashLayout = () => {
                   <path d="M14 10l2 2l-2 2"></path>
                 </svg>
               </label>
-              <div className="px-4">Navbar Title</div>
+              <div className="px-4">Dashboard</div>
             </nav>
             {/* Page content here */}
             <div className="p-4">

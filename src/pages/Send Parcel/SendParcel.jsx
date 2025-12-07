@@ -56,6 +56,8 @@ const SendParcel = () => {
         cost = minCharge + extraCharge;
       }
     }
+    finalData.parcelType = parcelType;
+    finalData.cost = cost;
     console.log(cost);
 
     const swalWithBootstrapButtons = Swal.mixin({
@@ -83,9 +85,9 @@ const SendParcel = () => {
             icon: "success",
           });
             //Save the parcel to the database
-            axiosSecure.post('/parcels', data)
+            axiosSecure.post('/parcels', finalData)
             .then(res=>{
-                console.log('after saving the parcel', res.data);
+                console.log('after saving the parcel', res.data);                
             })
 
         } else if (
