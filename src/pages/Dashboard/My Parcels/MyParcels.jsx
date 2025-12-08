@@ -52,7 +52,7 @@ const MyParcels = () => {
         <h1 className="text-2xl md:text-4xl font-semibold my-8">
           All of my parcels: {parcels.length}
         </h1>
-        <div className="overflow-x-auto rounded-box border border-base-content/5 p-4 bg-gray-300">
+        <div className="overflow-x-auto rounded-box border border-base-content/5 p-4 bg-secondary">
           <table className="table table-pin-rows table-pin-cols text-center shadow-2xl bg-white">
             {/* head */}
             <thead className="text-lg">
@@ -80,7 +80,7 @@ const MyParcels = () => {
                   <td>
                     {
                         parcel.paymentStatus === 'paid' ?
-                         <button disabled={true} className='btn btn-square'>Paid</button> :
+                         <button disabled={true} className='btn btn-square bg-primary'>Paid</button> :
                          <Link to={`/dashboard/payment/${parcel._id}`}>
                             <button className='btn btn-square bg-red-300'>Pay</button>
                          </Link>

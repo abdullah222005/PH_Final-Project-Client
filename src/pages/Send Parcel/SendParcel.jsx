@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
@@ -14,7 +14,7 @@ const SendParcel = () => {
   } = useForm();
 
   const {user} = useAuth();
-
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
   const serviceCenters = useLoaderData();
@@ -87,7 +87,16 @@ const SendParcel = () => {
             //Save the parcel to the database
             axiosSecure.post('/parcels', finalData)
             .then(res=>{
-                console.log('after saving the parcel', res.data);                
+                if(res.data.insertedId){
+                  navigate('/dashboard/my-parcels');
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your Parcel has been saved. Please Pay.',
+                    showConfirmButton: false,
+                    timer: 2222
+                  });
+                }            
             })
 
         } else if (
