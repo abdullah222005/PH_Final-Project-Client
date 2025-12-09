@@ -22,7 +22,7 @@ const LoginPage = () => {
         navigate(location?.state || '/')
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error?.message);
       });
   };
 

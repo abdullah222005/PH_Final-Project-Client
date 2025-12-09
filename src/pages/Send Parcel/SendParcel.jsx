@@ -63,7 +63,7 @@ const SendParcel = () => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger",
+        cancelButton: "btn btn-danger  mr-5",
       },
       buttonsStyling: false,
     });
@@ -81,21 +81,24 @@ const SendParcel = () => {
         if (result.isConfirmed) {
           swalWithBootstrapButtons.fire({
             title: "Confirmed Booking!",
-            text: "Now, you will be redirected for transaction..",
+            text: "Now, you will be redirected to your parcels",
             icon: "success",
+            timer: 1111,
           });
             //Save the parcel to the database
             axiosSecure.post('/parcels', finalData)
             .then(res=>{
                 if(res.data.insertedId){
                   navigate('/dashboard/my-parcels');
-                  Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your Parcel has been saved. Please Pay.',
-                    showConfirmButton: false,
-                    timer: 2222
-                  });
+                  setTimeout(() => {
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "Your Parcel has been saved. Please Pay.",
+                      showConfirmButton: false,
+                      timer: 2222, // This controls how long it stays open
+                    });
+                  }, 619);
                 }            
             })
 

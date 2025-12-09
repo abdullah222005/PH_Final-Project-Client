@@ -1,14 +1,21 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { BaggageClaim } from 'lucide-react';
+import { MdHistoryEdu } from "react-icons/md";
+import { MdDocumentScanner } from "react-icons/md";
+import Logo from '../components/logo/Logo';
 
 const DashLayout = () => {
     return (
+      <div>
+        <div className='flex justify-center absolute z-50 left-1/2 text-white -translate-x-1/2'>
+          <Logo />
+        </div>
         <div className="drawer lg:drawer-open">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
             {/* Navbar */}
-            <nav className="navbar w-full bg-base-300">
+            <nav className="navbar w-full bg-secondary text-white">
               <label
                 htmlFor="my-drawer-4"
                 aria-label="open sidebar"
@@ -44,7 +51,7 @@ const DashLayout = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+            <div className="flex min-h-full flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 bg-primary">
               {/* Sidebar content here */}
               <ul className="menu w-full grow">
                 {/* List item */}
@@ -76,13 +83,36 @@ const DashLayout = () => {
                 <li>
                   <NavLink
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="MyParcels"
+                    data-tip="My Parcels"
                     to="/dashboard/my-parcels"
                   >
-                    <BaggageClaim />
+                    <BaggageClaim className="-ml-1" />
+                    <span className="is-drawer-close:hidden"> My Parcels</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Payment History"
+                    to="/dashboard/payment-history"
+                  >
+                    <MdHistoryEdu className="text-3xl -ml-2" />
                     <span className="is-drawer-close:hidden">
                       {" "}
-                      My Parcels
+                      Payment History
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Riders Applications"
+                    to="/dashboard/riders-applications"
+                  >
+                    <MdDocumentScanner className="text-2xl -ml-1" />
+                    <span className="is-drawer-close:hidden">
+                      {" "}
+                      Riders Applications
                     </span>
                   </NavLink>
                 </li>
@@ -90,6 +120,7 @@ const DashLayout = () => {
             </div>
           </div>
         </div>
+      </div>
     );
 };
 

@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import { data, Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../Social Login/GoogleLogin";
 import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const RegisterPage = () => {
   const {
@@ -14,6 +15,7 @@ const RegisterPage = () => {
   const { registerUser, updateUserProfile } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const passwordValidation = {
     required: "Password is required",
@@ -41,10 +43,23 @@ const RegisterPage = () => {
         }`;
         //Image posting and profile update
         axios.post(img_API_URL, formData).then((res) => {
-          console.log("after img upload", res.data.data.url);
+          const photoURL = res.data.data.url;
+          //create user in db
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoURL
+          }
+          axiosSecure.post('/users', userInfo)
+          .then(res=>{
+            if(res.data.insertedId){
+              console.log('user created in the db', res.data);
+            }
+          })
+
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.url,
+            photoURL: photoURL,
           };
           updateUserProfile(userProfile)
             .then((result) => {
