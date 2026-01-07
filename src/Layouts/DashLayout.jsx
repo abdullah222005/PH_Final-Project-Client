@@ -4,11 +4,14 @@ import { BaggageClaim } from 'lucide-react';
 import { MdHistoryEdu } from "react-icons/md";
 import { MdDocumentScanner } from "react-icons/md";
 import Logo from '../components/logo/Logo';
+import { FaUsersGear } from "react-icons/fa6";
+import { MdDeliveryDining } from "react-icons/md";
+
 
 const DashLayout = () => {
     return (
       <div>
-        <div className='flex justify-center absolute z-50 left-1/2 text-white -translate-x-1/2'>
+        <div className="flex justify-center absolute z-50 left-1/2 text-white -translate-x-1/2">
           <Logo />
         </div>
         <div className="drawer lg:drawer-open">
@@ -86,7 +89,7 @@ const DashLayout = () => {
                     data-tip="My Parcels"
                     to="/dashboard/my-parcels"
                   >
-                    <BaggageClaim className="-ml-1" />
+                    <BaggageClaim className="-ml-1 my-3" />
                     <span className="is-drawer-close:hidden"> My Parcels</span>
                   </NavLink>
                 </li>
@@ -96,7 +99,7 @@ const DashLayout = () => {
                     data-tip="Payment History"
                     to="/dashboard/payment-history"
                   >
-                    <MdHistoryEdu className="text-3xl -ml-2" />
+                    <MdHistoryEdu className="text-3xl -ml-2 my-3" />
                     <span className="is-drawer-close:hidden">
                       {" "}
                       Payment History
@@ -109,10 +112,32 @@ const DashLayout = () => {
                     data-tip="Riders Applications"
                     to="/dashboard/riders-applications"
                   >
-                    <MdDocumentScanner className="text-2xl -ml-1" />
+                    <MdDocumentScanner className="text-2xl -ml-1 my-3" />
                     <span className="is-drawer-close:hidden">
                       {" "}
                       Riders Applications
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="All Users"
+                    to="/dashboard/users-management-system"
+                  >
+                    <FaUsersGear className="text-2xl -ml-1 my-3" />
+                    <span className="is-drawer-close:hidden"> All Users</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assign Riders"
+                    to="/dashboard/assign-riders"
+                  >
+                    <MdDeliveryDining className="text-2xl -ml-1 my-3" />
+                    <span className="is-drawer-close:hidden">
+                      Assign Riders
                     </span>
                   </NavLink>
                 </li>

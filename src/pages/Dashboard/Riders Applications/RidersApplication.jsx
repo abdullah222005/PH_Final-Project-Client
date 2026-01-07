@@ -8,10 +8,10 @@ import Swal from "sweetalert2";
 const RidersApplication = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: applications = [], refetch } = useQuery({
+  const { data: applications = [],refetch } = useQuery({
     queryKey: ["riders"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/riders");
+      const res = await axiosSecure.get("/riders");      
       return res.data;
     },
   });
@@ -51,7 +51,7 @@ const RidersApplication = () => {
   return (
     <div className="max-w-7xl mx-auto my-11">
       <h1 className="text-2xl md:text-4xl font-semibold">
-        Total Riders & their Applications: {applications.length}
+        Total Riders Applications: {applications.length}
       </h1>
 
       <div className="overflow-x-auto rounded-box border border-base-content/5 p-4 bg-secondary mt-11">
@@ -102,7 +102,7 @@ const RidersApplication = () => {
                 </td>
 
                 <td>
-                  <button
+                  <button disabled={app.applicationStatus !== 'Pending'}
                     className="btn btn-square hover:bg-primary tooltip mr-5"
                     data-tip="Accept Rider"
                     onClick={() => handleRiderAccept(app)}
@@ -112,7 +112,7 @@ const RidersApplication = () => {
 
                   {/* VIEW DETAILS BUTTON */}
 
-                  <button
+                  <button disabled={app.applicationStatus !== 'Pending'}
                     className="btn btn-square hover:bg-primary tooltip"
                     data-tip="Reject Rider"
                     onClick={() => handleRiderReject(app)}
