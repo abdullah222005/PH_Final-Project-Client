@@ -19,6 +19,10 @@ import PaymentHistory from "../pages/Dashboard/Payment History/PaymentHistory";
 import RidersApplication from "../pages/Dashboard/Riders Applications/RidersApplication";
 import UsersManage from "../pages/Dashboard/Users Management/UsersManage";
 import AssignRider from "../pages/Dashboard/Assign Rider/AssignRider";
+import Dashboard from "../pages/Dashboard/Dashboard/Dashboard";
+import Services from "../pages/Services/Services";
+import AboutUs from "../pages/aboutUs/AboutUs";
+import Pricing from "../pages/pricing/Pricing";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +37,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/services",
+        Component: Services,
       },
       {
         path: "/coverage",
@@ -41,9 +46,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/aboutUs",
+        Component: AboutUs
       },
       {
         path: "/pricing",
+        Component: Pricing,
       },
       {
         path: "/sendParcel",
@@ -81,10 +88,12 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <PrivateRoute>
-      <DashLayout/>
-    </PrivateRoute>,
+    Component: 
+      DashLayout,
     children: [
+      { index: true,
+        Component: Dashboard
+      },
       {
         path: 'my-parcels',
         Component: MyParcels

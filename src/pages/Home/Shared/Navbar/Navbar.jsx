@@ -64,8 +64,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm mx-auto">
+    <div className="bg-base-100 border-b-2 border-gray-300">
+      <div className="navbar max-w-7xl mx-auto px-6 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -94,7 +94,7 @@ const Navbar = () => {
           <Logo />
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-10">{links}</ul>
+          <ul className="menu menu-horizontal px-1 gap-5">{links}</ul>
         </div>
 
         {/* Buttons here  */}
@@ -116,7 +116,7 @@ const Navbar = () => {
               Be a rider
             </button>
           </Link>
-          <BsArrowUpRightCircleFill className="text-4xl -ml-4" />
+          <BsArrowUpRightCircleFill className="text-4xl -ml-4 hidden md:block" />
         </div>
       </div>
     </div>

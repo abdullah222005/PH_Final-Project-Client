@@ -11,14 +11,11 @@ import { MdDeliveryDining } from "react-icons/md";
 const DashLayout = () => {
     return (
       <div>
-        <div className="flex justify-center absolute z-50 left-1/2 text-white -translate-x-1/2">
-          <Logo />
-        </div>
         <div className="drawer lg:drawer-open">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
             {/* Navbar */}
-            <nav className="navbar w-full bg-secondary text-white">
+            <nav className="navbar w-full bg-secondary text-white sticky top-0">
               <label
                 htmlFor="my-drawer-4"
                 aria-label="open sidebar"
@@ -40,7 +37,12 @@ const DashLayout = () => {
                   <path d="M14 10l2 2l-2 2"></path>
                 </svg>
               </label>
-              <div className="px-4">Dashboard</div>
+              <Link to="/dashboard" className="px-4">
+                Dashboard
+              </Link>
+              <div className="flex justify-center absolute z-50 left-1/2 text-white -translate-x-1/2">
+                <Logo />
+              </div>
             </nav>
             {/* Page content here */}
             <div className="p-4">

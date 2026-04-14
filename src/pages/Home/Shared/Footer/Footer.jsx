@@ -17,7 +17,6 @@ const Footer = () => {
         }}
         className="bg-[#FCFAE0] text-black pt-10"
       >
-
         {/* Newsletter Section */}
         {location.pathname === "/" && (
           <newsletter>
@@ -33,7 +32,7 @@ const Footer = () => {
                 Thanks for staying with us.{" "}
               </p>
             </div>
-            <div className="flex justify-center items-center my-5 mb-10">
+            <div className="flex justify-center items-center my-5 pb-10 border-b-2 border-gray-300">
               <Newspaper />
               <input
                 className="w-55 md:w-77 lg:w-111 ml-2 outline-0 bg-white p-4 rounded-3xl"
@@ -41,7 +40,21 @@ const Footer = () => {
                 placeholder="Input your email here"
                 name="email"
               />
-              <button className="ml-3 text-lg md:text-2xl lg:text-3xl text-gray-500 font-semibold hover:bg-primary px-2 md:px-4 lg:px-6 py-2 pb-2.5 rounded-3xl cursor-pointer border-2 border-gray-300">
+              <button
+                className="
+    ml-3 
+    text-lg md:text-2xl lg:text-3xl 
+    text-gray-500 font-semibold 
+    px-4 md:px-6 lg:px-8 py-2 pb-2.5 
+    rounded-full cursor-pointer 
+    border-2 border-gray-300
+    transition-all duration-300 ease-in-out
+    hover:bg-primary hover:text-white hover:border-primary
+    hover:shadow-[0_8px_20px_-10px_rgba(var(--primary-rgb),0.5)]
+    hover:-translate-y-1
+    active:scale-95 active:translate-y-0
+  "
+              >
                 Subscribe
               </button>
             </div>
@@ -49,13 +62,12 @@ const Footer = () => {
         )}
 
         {/* Footer Contents */}
-        <div className="max-w-10/12 mx-auto footer sm:footer-horizontal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="max-w-10/12 mx-auto my-8 md:my-12 lg:my-16 footer sm:footer-horizontal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           <nav>
-            <Logo/>
+            <Logo />
             <p className="text-[17px]">
-              We are providing a online platform
-              to delivering items to everyone from everybody since
-              2020
+              We are providing a online platform to delivering items to everyone
+              from everybody since 2020
             </p>
           </nav>
           <nav>
@@ -115,7 +127,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright Area */}
-        <div className="max-w-10/12 mx-auto flex justify-center border-t-2 mt-5 py-5 gap-5">
+        <div className="flex justify-center border-t-2 mt-5 py-5 gap-5">
           <svg
             width="36"
             height="36"

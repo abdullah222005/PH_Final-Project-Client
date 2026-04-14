@@ -12,8 +12,8 @@ const brandLogos = [amazon, amazonVector, casio, moonstar, randstad, star, start
 
 const ServedBrands = () => {
     return (
-      <div className="my-5 md:my-10 lg:my-15 pb-10 lg:pb-20">
-        <h1 className="text-2xl md:text-4xl font-semibold text-secondary my-15 lg:my-20 text-center">
+      <div className="pt-8 md:pt-12 lg:pt-16 px-4 md:px-6">
+        <h1 className="text-2xl md:text-4xl font-semibold text-secondary mb-12 text-center">
           We've helped thousands of sales teams
         </h1>
         <div className="w-full overflow-hidden">

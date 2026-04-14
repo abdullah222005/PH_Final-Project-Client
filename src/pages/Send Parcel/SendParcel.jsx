@@ -200,7 +200,8 @@ const SendParcel = () => {
                   {...register("senderName", { required: true })}
                   className="input input-bordered w-full"
                   placeholder="Sender Name"
-                  defaultValue={user?.displayName} readOnly
+                  defaultValue={user?.displayName}
+                  readOnly
                 />
                 {errors.senderName && (
                   <p className="text-red-500 text-xs mt-1">Required</p>
@@ -216,7 +217,8 @@ const SendParcel = () => {
                   {...register("senderEmail", { required: true })}
                   className="input input-bordered w-full"
                   placeholder="Sender Email"
-                  defaultValue={user?.email} readOnly
+                  defaultValue={user?.email}
+                  readOnly
                 />
                 {errors.senderEmail && (
                   <p className="text-red-500 text-xs mt-1">Required</p>
@@ -448,10 +450,34 @@ const SendParcel = () => {
         </div>
 
         <p className="text-sm text-gray-600">* Pickup Time 4pm–7pm approx.</p>
+        <div className="w-full flex justify-center">
+          <button
+            type="submit"
+            className="
+    btn border-none bg-primary text-white px-10 py-3 
+    rounded-2xl font-bold tracking-wide
+    relative overflow-hidden group
+    transition-all duration-300 ease-out
+    hover:bg-primary/90 hover:shadow-[0_10px_25px_-5px_rgba(var(--primary-rgb),0.4)]
+    hover:scale-[1.02] active:scale-95
+  "
+          >
+            {/* The Text */}
+            <span className="relative z-10 text-black flex items-center gap-2 transition-all duration-300 group-hover:pr-6">
+              Proceed to Confirm Booking
+              {/* Animated Arrow that appears on hover */}
+              <span className="absolute right-[-20px] opacity-0 transition-all duration-300 group-hover:right-[-10px] group-hover:opacity-100">
+                →
+              </span>
+            </span>
 
-        <button type="submit" className="btn bg-primary px-8">
-          Proceed to Confirm Booking
-        </button>
+            {/* Subtle pulse effect background */}
+            <div className="absolute inset-0 bg-white/20 scale-0 rounded-2xl group-hover:animate-ping opacity-0 group-hover:opacity-10 transition-all duration-500" />
+
+            {/* Shine sweep (uses the 'shine' keyframe we added earlier) */}
+            <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/30 opacity-40 group-hover:animate-shine" />
+          </button>
+        </div>
       </form>
     </div>
   );

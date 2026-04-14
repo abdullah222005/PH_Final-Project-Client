@@ -30,7 +30,7 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index);
   }
   return (
-    <div className="my-5 md:my-10 lg:my-15">
+    <div className="my-8 md:my-12 lg:my-16 px-4 md:px-6">
       <h1 className="text-2xl md:text-4xl mb-5 text-center text-secondary">
         Frequently Asked Question (FAQ)
       </h1>
@@ -52,7 +52,7 @@ const FAQ = () => {
           >
             <h1
               className={`flex justify-between text-secondary text-xl ${
-                openIndex !== index ? "bg-white" : "border-b-2 border-gray-500"
+                openIndex !== index ? "bg-white" : ""
               }  p-5 rounded-xl font-semibold`}
             >
               {faq.ques}{" "}
@@ -64,7 +64,7 @@ const FAQ = () => {
               />
             </h1>
             {openIndex === index && (
-              <p className="p-5 text-gray-600">{faq.ans}</p>
+              <p className="pb-5 px-5 text-gray-600">{faq.ans}</p>
             )}
           </div>
         ))}

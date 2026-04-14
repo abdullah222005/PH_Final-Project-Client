@@ -9,7 +9,9 @@ const PaymentHistory = () => {
     const {data: payments = []} = useQuery({
         queryKey: ['payments', user.email],
         queryFn: async ()=>{
-            const res = await axiosSecure.get(`/payments?email=${user.email}`)
+            const res = await axiosSecure.get(`/payments?email=${user.email}`);
+            console.log(res.data);
+            
             return res.data;
         }
     })
@@ -25,7 +27,7 @@ const PaymentHistory = () => {
             <tr>
               <th>SL</th>
               <th>Parcel Info</th>
-              <th>Recipient Info</th>
+              <th>Recipient Email</th>
               <th>Tracking Number</th>
               <th>Payment Info</th>
               <th>Action</th>
@@ -45,9 +47,7 @@ const PaymentHistory = () => {
 
                 {/* Recipient Info (Load from your parcel DB using parcelId if needed) */}
                 <td>
-                  <p className="font-semibold">{p.recipientName}</p>
-                  <p className="text-sm">{p.recipientAddress}</p>
-                  <p className="text-sm">{p.recipientPhone}</p>
+                  <p className="font-semibold">{p.customerEmail}</p>
                 </td>
 
                 {/* Tracking */}

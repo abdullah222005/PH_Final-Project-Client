@@ -30,8 +30,10 @@ const OurServices = () => {
     },
   ];
   return (
-    <div className="my-5 md:my-10 lg:my-15 bg-secondary rounded-2xl text-white p-10">
-      <h1 className="text-2xl md:text-4xl font-semibold mb-5 text-center">Our Services</h1>
+    <section className="mt-16 md:mt-24 lg:mt-32 mb-8 md:mb-12 lg:mb-16 px-4 md:px-6 bg-secondary rounded-2xl text-white p-10">
+      <h1 className="text-2xl md:text-4xl font-semibold mb-5 text-center">
+        Our Services
+      </h1>
       <p className="w-77 md:w-123 lg:w-203 mx-auto text-center">
         Enjoy fast, reliable parcel delivery with real-time tracking and zero
         hassle. From personal packages to business shipments — we deliver on
@@ -39,7 +41,11 @@ const OurServices = () => {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
         {data.map((info, index) => (
-          <div info={info} key={index} className="bg-white p-5 rounded-2xl text-center hover:bg-primary">
+          <div
+            info={info}
+            key={index}
+            className="bg-white p-5 rounded-2xl text-center hover:bg-primary"
+          >
             <div className="bg-[#EEEDFC] w-15 h-15 rounded-full flex justify-center items-center mx-auto">
               <img src={serviceLogo} alt="" />
             </div>
@@ -50,7 +56,7 @@ const OurServices = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -11,7 +11,7 @@ const Reviews = ({reviewsPromise}) => {
     const reviewData = use(reviewsPromise);
         
     return (
-      <div className="my-10 md:my-15 lg:my-20 lg:py-10">
+      <div className="py-8 md:py-12 lg:py-16 px-4 md:px-6">
         <img src={reviewImg} className="mx-auto mb-7" alt="" />
         <h1 className="text-2xl md:text-4xl text-center font-semibold text-secondary">
           What our customers are sayings
@@ -41,14 +41,14 @@ const Reviews = ({reviewsPromise}) => {
             modules={[EffectCoverflow, Pagination]}
             className="mySwiper"
             breakpoints={{
-                0:{
-                    slidesPerView: 1,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 3,
-                    spaceBetween: 0,
-                }
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 0,
+              },
             }}
           >
             {reviewData.map((review, index) => (
@@ -74,9 +74,7 @@ const Reviews = ({reviewsPromise}) => {
                   />
                   <div className="flex-1">
                     <h3 className="font-semibold">{review.userName}</h3>
-                    <p className="text-gray-700 text-sm">
-                      {review.user_email}
-                    </p>
+                    <p className="text-gray-700 text-sm">{review.user_email}</p>
                   </div>
                 </div>
               </SwiperSlide>
