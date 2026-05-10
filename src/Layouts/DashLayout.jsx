@@ -1,154 +1,238 @@
-import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
-import { BaggageClaim } from 'lucide-react';
-import { MdHistoryEdu } from "react-icons/md";
-import { MdDocumentScanner } from "react-icons/md";
-import Logo from '../components/logo/Logo';
+import React from "react";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import {
+  BaggageClaim,
+  Home,
+  LayoutDashboard,
+  Settings,
+  LogOut,
+  Bell,
+} from "lucide-react";
+import {
+  MdHistoryEdu,
+  MdDocumentScanner,
+  MdDeliveryDining,
+} from "react-icons/md";
 import { FaUsersGear } from "react-icons/fa6";
-import { MdDeliveryDining } from "react-icons/md";
-
+import Logo from "../components/logo/Logo";
+import useAuth from '../hooks/useAuth'
+import toast from "react-hot-toast";
 
 const DashLayout = () => {
-    return (
-      <div>
-        <div className="drawer lg:drawer-open">
-          <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content">
-            {/* Navbar */}
-            <nav className="navbar w-full bg-secondary text-white sticky top-0">
+  const {logOutUser} = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOutUser()
+    .then(res=>{
+      // console.log(res);
+      toast.success("Log Out Successful..!");
+      navigate('/');
+    })
+    .then(err=>{
+      // console.log(err);
+    })
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+
+        <div className="drawer-content flex flex-col">
+          {/* Modern Professional Navbar */}
+          <nav className="navbar w-full bg-white border-b border-gray-200 sticky top-0 z-30 px-4 md:px-8">
+            <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-4"
-                aria-label="open sidebar"
-                className="btn btn-square btn-ghost"
+                className="btn btn-square btn-ghost text-secondary"
               >
-                {/* Sidebar toggle icon */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
                   fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
+                  viewBox="0 0 24 24"
+                  className="inline-block w-6 h-6 stroke-current"
                 >
-                  <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
-                  <path d="M9 4v16"></path>
-                  <path d="M14 10l2 2l-2 2"></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
                 </svg>
               </label>
-              <Link to="/dashboard" className="px-4">
-                Dashboard
-              </Link>
-              <div className="flex justify-center absolute z-50 left-1/2 text-white -translate-x-1/2">
-                <Logo />
+            </div>
+
+            <div className="flex-1">
+              <h2 className="text-secondary font-bold text-xl hidden md:block">
+                <span className="text-gray-400 font-normal">Dashboard</span>
+              </h2>
+            </div>
+
+            <div className="flex gap-4 items-center">
+              {/* Notification Bell */}
+              <button className="btn btn-ghost btn-circle text-secondary">
+                <div className="indicator">
+                  <Bell size={20} />
+                  <span className="badge badge-xs badge-primary indicator-item"></span>
+                </div>
+              </button>
+
+              {/* User Profile Dropdown */}
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar border-2 border-primary"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="User"
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-white rounded-box z-[1] mt-3 w-52 p-2 shadow-xl border border-gray-100 text-secondary"
+                >
+                  <li>
+                    <a href="my-profile">Profile</a>
+                  </li>
+                  <li>
+                    <a href="settings">Settings</a>
+                  </li>
+                  <li className="text-red-500">
+                    <button onClick={handleLogOut}>
+                      <LogOut size={15} />
+                      Logout
+                    </button>
+                  </li>
+                </ul>
               </div>
-            </nav>
-            {/* Page content here */}
-            <div className="p-4">
+            </div>
+          </nav>
+
+          {/* Main Content Area */}
+          <main className="bg-[#EAECED]">
+            <div className="max-w-full min-h-screen mx-auto p-4 md:p-6 lg:pr-2 lg:p-8">
               <Outlet />
             </div>
-          </div>
+          </main>
+        </div>
 
-          <div className="drawer-side is-drawer-close:overflow-visible">
-            <label
-              htmlFor="my-drawer-4"
-              aria-label="close sidebar"
-              className="drawer-overlay"
-            ></label>
-            <div className="flex min-h-full flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 bg-primary">
-              {/* Sidebar content here */}
-              <ul className="menu w-full grow">
-                {/* List item */}
+        {/* Sidebar Redesign */}
+        <div className="drawer-side z-40">
+          <label
+            htmlFor="my-drawer-4"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <div className="flex min-h-full flex-col w-64 md:w-72 bg-secondary text-white">
+            {/* Sidebar Header/Logo */}
+            <div className="border-b border-white/10">
+              <div className="flex justify-center">
+                <Logo />
+              </div>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="flex flex-col grow p-4">
+              <ul className="menu menu-md lg:menu-lg w-full gap-2">
+                <li className="menu-title text-gray-400 uppercase text-xs tracking-widest mt-4">
+                  Main Menu
+                </li>
+
                 <li>
-                  <Link
+                  <NavLink
                     to="/"
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Homepage"
+                    className={({ isActive }) =>
+                      `flex items-center gap-4 px-4 py-3 rounded-xl transition-all ${isActive ? "bg-primary text-secondary font-bold shadow-lg shadow-primary/20" : "hover:bg-white/10"}`
+                    }
                   >
-                    {/* Home icon */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="2"
-                      fill="none"
-                      stroke="currentColor"
-                      className="my-1.5 inline-block size-4"
-                    >
-                      <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-                      <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    </svg>
-                    <span className="is-drawer-close:hidden">Homepage</span>
-                  </Link>
+                    <Home size={20} />
+                    <span>Homepage</span>
+                  </NavLink>
                 </li>
 
-                {/* Our Dashboard Links */}
                 <li>
                   <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="My Parcels"
-                    to="/dashboard/my-parcels"
+                    to="/dashboard"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center gap-4 px-4 py-3 rounded-xl transition-all ${isActive ? "bg-primary text-secondary font-bold shadow-lg shadow-primary/20" : "hover:bg-white/10"}`
+                    }
                   >
-                    <BaggageClaim className="-ml-1 my-3" />
-                    <span className="is-drawer-close:hidden"> My Parcels</span>
+                    <LayoutDashboard size={20} />
+                    <span>Overview</span>
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Payment History"
-                    to="/dashboard/payment-history"
-                  >
-                    <MdHistoryEdu className="text-3xl -ml-2 my-3" />
-                    <span className="is-drawer-close:hidden">
-                      {" "}
-                      Payment History
-                    </span>
-                  </NavLink>
+
+                <li className="menu-title text-gray-400 uppercase text-xs tracking-widest mt-4">
+                  Management
                 </li>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Riders Applications"
-                    to="/dashboard/riders-applications"
-                  >
-                    <MdDocumentScanner className="text-2xl -ml-1 my-3" />
-                    <span className="is-drawer-close:hidden">
-                      {" "}
-                      Riders Applications
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="All Users"
-                    to="/dashboard/users-management-system"
-                  >
-                    <FaUsersGear className="text-2xl -ml-1 my-3" />
-                    <span className="is-drawer-close:hidden"> All Users</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Assign Riders"
-                    to="/dashboard/assign-riders"
-                  >
-                    <MdDeliveryDining className="text-2xl -ml-1 my-3" />
-                    <span className="is-drawer-close:hidden">
-                      Assign Riders
-                    </span>
-                  </NavLink>
-                </li>
+
+                {[
+                  {
+                    to: "/dashboard/my-parcels",
+                    icon: <BaggageClaim size={20} />,
+                    label: "My Parcels",
+                  },
+                  {
+                    to: "/dashboard/payment-history",
+                    icon: <MdHistoryEdu size={22} />,
+                    label: "Payment History",
+                  },
+                  {
+                    to: "/dashboard/riders-applications",
+                    icon: <MdDocumentScanner size={20} />,
+                    label: "Rider Applications",
+                  },
+                  {
+                    to: "/dashboard/users-management-system",
+                    icon: <FaUsersGear size={20} />,
+                    label: "Users System",
+                  },
+                  {
+                    to: "/dashboard/assign-riders",
+                    icon: <MdDeliveryDining size={22} />,
+                    label: "Assign Riders",
+                  },
+                ].map((link) => (
+                  <li key={link.to}>
+                    <NavLink
+                      to={link.to}
+                      className={({ isActive }) =>
+                        `flex items-center gap-4 px-4 py-3 rounded-xl transition-all ${isActive ? "bg-primary text-secondary font-bold shadow-lg shadow-primary/20" : "hover:bg-white/10"}`
+                      }
+                    >
+                      {link.icon}
+                      <span>{link.label}</span>
+                    </NavLink>
+                  </li>
+                ))}
               </ul>
+
+              {/* Bottom Sidebar Actions */}
+              <div className="mt-auto pt-10">
+                <ul className="menu gap-2 border-t border-white/10 pt-4 w-full">
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="flex items-center justify-center gap-4 px-4 py-3 text-red-400 bg-red-500/25 hover:bg-red-500/50 hover:text-white rounded-xl transition-all"
+                    >
+                      <LogOut size={20} />
+                      <span>Logout</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default DashLayout;

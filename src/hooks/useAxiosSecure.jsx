@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-  baseURL: "https://zap-shift-server-rho-ochre.vercel.app",
+  baseURL: "http://localhost:3333",
 });
 
 const useAxiosSecure = () => {
@@ -19,7 +19,7 @@ const useAxiosSecure = () => {
           config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
-      }
+      },
     );
     // intercepter response
     const resInterceptor = axiosSecure.interceptors.response.use(
@@ -29,12 +29,13 @@ const useAxiosSecure = () => {
       (error) => {
         const statusCode = error.status;
         if (statusCode === 401 || statusCode === 403) {
-          logOutUser().then((res) => {
-            navigate("/auth/login");
-          });
+          // logOutUser().then((res) => {
+          //   navigate("/auth/login");
+          console.log(statusCode);
+          // });
         }
         return Promise.reject(error);
-      }
+      },
     );
 
     return () => {

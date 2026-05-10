@@ -1,257 +1,258 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  User,
   Package,
   Truck,
   Users,
-  Settings,
-  Menu,
-  X,
-  LogOut,
-  Home,
-  BarChart3,
+  CreditCard,
+  Star,
+  Clock,
+  MapPin,
+  TrendingUp,
+  CheckCircle2,
 } from "lucide-react";
-import { useAuth } from "./hooks/useData";
-import { NavItem, LoadingSpinner } from "./components/SharedComponents";
-import AdminDashboard from "./components/AdminDashboard";
-import DeliveryDashboard from "./components/DeliveryDashboard";
-import CustomerDashboard from "./components/CustomerDashboard";
+import useRole from "../../hooks/useRole";
+import { LoadingSpinner } from "../../components/Shared/SharedComponents";
 
-// Login Screen Component
-const LoginScreen = ({ onLogin }) => {
+// --- 1. ADMIN OVERVIEW ---
+const AdminOverview = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
-        <div className="flex items-center justify-center mb-6">
-          <Truck className="w-12 h-12 text-indigo-600" />
-        </div>
-        <h1 className="text-2xl font-bold text-center mb-2">
-          Zap Shift Dashboard
-        </h1>
-        <p className="text-gray-600 text-center mb-8">
-          Select a role to login (Demo Mode)
+    <div className="space-y-8 animate-in fade-in duration-700">
+      <header>
+        <h1 className="text-2xl font-bold text-secondary">System Statistics</h1>
+        <p className="text-gray-500">
+          Overview of ZapShift operations and revenue.
         </p>
+      </header>
 
-        <div className="space-y-3">
-          <button
-            onClick={() =>
-              onLogin({
-                email: "admin@zapshift.com",
-                displayName: "Admin User",
-                role: "admin",
-              })
-            }
-            className="w-full py-3 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center justify-center gap-2"
-          >
-            <Users className="w-5 h-5" />
-            Login as Admin
-          </button>
-          <button
-            onClick={() =>
-              onLogin({
-                email: "rider@zapshift.com",
-                displayName: "John Rider",
-                role: "delivery",
-              })
-            }
-            className="w-full py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center justify-center gap-2"
-          >
-            <Truck className="w-5 h-5" />
-            Login as Delivery Partner
-          </button>
-          <button
-            onClick={() =>
-              onLogin({
-                email: "g.rabbi2005.555@gmail.com",
-                displayName: "Customer User",
-                role: "customer",
-              })
-            }
-            className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2"
-          >
-            <User className="w-5 h-5" />
-            Login as Customer
+      {/* Admin Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatCard
+          title="Total Revenue"
+          value="৳128,450"
+          growth="+12.5%"
+          icon={CreditCard}
+        />
+        <StatCard
+          title="Total Parcels"
+          value="4,820"
+          growth="+8.2%"
+          icon={Package}
+        />
+        <StatCard
+          title="Registered Riders"
+          value="156"
+          growth="+12"
+          icon={Truck}
+        />
+        <StatCard
+          title="Total Customers"
+          value="2.4k"
+          growth="+18%"
+          icon={Users}
+        />
+      </div>
+
+      {/* Recent Global Activity Table */}
+      <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-lg font-bold text-secondary">
+            Recent Transactions
+          </h3>
+          <button className="text-sm font-bold text-secondary hover:underline">
+            View All
           </button>
         </div>
+        <div className="overflow-x-auto">
+          <table className="table w-full">
+            <thead className="bg-gray-50">
+              <tr className="text-gray-400 uppercase text-[10px] tracking-widest border-none">
+                <th className="rounded-l-xl">Tracking ID</th>
+                <th>Sender</th>
+                <th>District</th>
+                <th>Cost</th>
+                <th className="rounded-r-xl">Status</th>
+              </tr>
+            </thead>
+            <tbody className="text-secondary">
+              <tr className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
+                <td className="font-mono text-xs py-4">ZAP-20260419-8A301C</td>
+                <td className="font-semibold">MD. GOLAM RABBI</td>
+                <td>Gazipur</td>
+                <td className="font-bold">৳80</td>
+                <td>
+                  <span className="badge badge-success bg-primary text-secondary border-none font-bold badge-sm">
+                    Paid
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-        <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-          <p className="text-xs text-yellow-800">
-            <strong>Demo Mode:</strong> This is using mock authentication. In
-            production, integrate with Firebase Auth.
+// --- 2. RIDER OVERVIEW ---
+const RiderOverview = ({ user }) => {
+  return (
+    <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-700">
+      {/* Welcome Banner */}
+      <div className="bg-secondary p-8 rounded-[2rem] text-white relative overflow-hidden">
+        <div className="relative z-10">
+          <h1 className="text-3xl font-bold">Hello, {user.displayName}! 👋</h1>
+          <p className="text-gray-300 mt-2">
+            You have 5 parcels to deliver in your zone today.
           </p>
         </div>
+        <Truck className="absolute -right-10 -bottom-10 size-64 text-white/5 -rotate-12" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Active Deliveries List */}
+        <div className="lg:col-span-2 space-y-4">
+          <h3 className="text-lg font-bold text-secondary flex items-center gap-2">
+            <Clock className="text-primary" size={20} /> Current Tasks
+          </h3>
+          <div className="bg-white p-6 rounded-2xl border-l-4 border-primary shadow-sm flex justify-between items-center hover:shadow-md transition-shadow">
+            <div>
+              <p className="text-[10px] text-gray-400 font-mono mb-1">
+                ID: ZAP-20251208-04A329
+              </p>
+              <h4 className="font-bold text-secondary text-lg">
+                Watermelon (12kg)
+              </h4>
+              <div className="flex items-center gap-3 mt-1">
+                <p className="text-sm text-gray-500 flex items-center gap-1">
+                  <MapPin size={14} /> Gazipur
+                </p>
+                <span className="text-gray-300">|</span>
+                <p className="text-sm text-gray-500">To: Lalmonirhat</p>
+              </div>
+            </div>
+            <button className="btn bg-secondary text-white hover:bg-black border-none px-6">
+              Deliver
+            </button>
+          </div>
+        </div>
+
+        {/* Rider Performance Stats */}
+        <div className="space-y-6">
+          <h3 className="text-lg font-bold text-secondary">Your Rating</h3>
+          <div className="bg-white p-8 rounded-3xl shadow-sm text-center border border-gray-100">
+            <div className="inline-flex p-4 bg-primary/10 rounded-full mb-4">
+              <Star className="text-primary fill-primary" size={32} />
+            </div>
+            <h4 className="text-4xl font-black text-secondary">4.9</h4>
+            <p className="text-gray-400 text-sm mt-1">Excellent Performance</p>
+            <div className="mt-6 pt-6 border-t border-gray-50 grid grid-cols-2">
+              <div>
+                <p className="text-xl font-bold text-secondary">142</p>
+                <p className="text-[10px] text-gray-400 uppercase">Delivered</p>
+              </div>
+              <div className="border-l border-gray-50">
+                <p className="text-xl font-bold text-secondary">৳12,400</p>
+                <p className="text-[10px] text-gray-400 uppercase">Earned</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-// Main Dashboard Component
-const DeliveryDashboard = () => {
-  const { currentUser, loading: authLoading, login, logout } = useAuth();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [currentView, setCurrentView] = useState("dashboard");
-
-  // Handle authentication loading
-  if (authLoading) {
-    return <LoadingSpinner fullScreen />;
-  }
-
-  // Show login screen if no user
-  if (!currentUser) {
-    return <LoginScreen onLogin={login} />;
-  }
-
-  // Determine which dashboard to render
-  const renderDashboard = () => {
-    switch (currentUser.role) {
-      case "admin":
-        return <AdminDashboard currentUser={currentUser} />;
-      case "delivery":
-        return <DeliveryDashboard currentUser={currentUser} />;
-      case "customer":
-        return <CustomerDashboard currentUser={currentUser} />;
-      default:
-        return <CustomerDashboard currentUser={currentUser} />;
-    }
-  };
-
-  // Navigation items based on role
-  const getNavigationItems = () => {
-    const commonItems = [
-      { icon: Home, text: "Dashboard", view: "dashboard" },
-      { icon: Package, text: "Orders", view: "orders" },
-      { icon: Settings, text: "Settings", view: "settings" },
-    ];
-
-    if (currentUser.role === "admin") {
-      return [
-        ...commonItems.slice(0, 2),
-        { icon: Users, text: "Riders", view: "riders" },
-        { icon: BarChart3, text: "Analytics", view: "analytics" },
-        ...commonItems.slice(2),
-      ];
-    }
-
-    return commonItems;
-  };
-
+// --- 3. CUSTOMER OVERVIEW ---
+const CustomerOverview = ({ role }) => {
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside
-        className={`fixed left-0 top-0 h-full bg-white shadow-lg transition-transform duration-300 z-20 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } w-64`}
-      >
-        <div className="p-6">
-          {/* Logo */}
-          <div className="flex items-center gap-2 mb-8">
-            <Truck className="w-8 h-8 text-indigo-600" />
-            <h1 className="text-xl font-bold">Zap Shift</h1>
+    <div className="space-y-8 animate-in fade-in duration-700">
+      <div className="flex justify-between items-end">
+        <div>
+          <h1 className="text-2xl font-bold text-secondary">Welcome Back!</h1>
+          <p className="text-gray-500">Track your ongoing shipments here.</p>
+        </div>
+        <button className="btn bg-primary text-secondary border-none font-bold px-8 rounded-xl hover:scale-105 transition-transform">
+          + New Booking
+        </button>
+      </div>
+
+      {/* Customer Parcel Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm relative group hover:border-primary transition-all">
+          <div className="flex justify-between items-start mb-6">
+            <div className="p-3 bg-primary/10 rounded-2xl">
+              <Package className="text-secondary" size={24} />
+            </div>
+            <span className="badge bg-green-100 text-green-700 border-none font-bold">
+              PAID
+            </span>
           </div>
 
-          {/* Navigation */}
-          <nav className="space-y-2">
-            {getNavigationItems().map((item) => (
-              <NavItem
-                key={item.view}
-                icon={item.icon}
-                text={item.text}
-                active={currentView === item.view}
-                onClick={() => setCurrentView(item.view)}
-              />
-            ))}
-          </nav>
-        </div>
+          <h3 className="font-bold text-lg text-secondary">Watermelon</h3>
+          <p className="text-[10px] text-gray-400 font-mono mb-4">
+            ZAP-20251208-04A329
+          </p>
 
-        {/* User Profile & Logout */}
-        <div className="absolute bottom-0 w-full p-6 border-t">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-              <User className="w-6 h-6 text-indigo-600" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-medium text-sm truncate">
-                {currentUser.displayName || currentUser.email}
-              </p>
-              <p className="text-xs text-gray-500 capitalize">
-                {currentUser.role}
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={logout}
-            className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition"
-          >
-            <LogOut className="w-4 h-4" />
-            Logout
-          </button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <div
-        className={`transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-0"}`}
-      >
-        {/* Header */}
-        <header className="bg-white shadow-sm sticky top-0 z-10">
-          <div className="flex items-center justify-between px-6 py-4">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition"
-            >
-              {sidebarOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600">
-                Welcome, {currentUser.displayName || currentUser.email}!
+          <div className="space-y-3 mb-6">
+            <div className="flex items-center gap-3 text-sm">
+              <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+              <span className="text-gray-600">
+                Status: <b className="text-secondary">Pending-Pickup</b>
               </span>
             </div>
+            <div className="flex items-center gap-3 text-sm text-gray-500">
+              <MapPin size={16} />
+              <span>To: Lalmonirhat</span>
+            </div>
           </div>
-        </header>
 
-        {/* Dashboard Content */}
-        <main className="p-6">
-          {currentView === "dashboard" && renderDashboard()}
-          {currentView === "orders" && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-bold mb-4">Orders View</h2>
-              <p className="text-gray-600">
-                This section is under development. The dashboard view above
-                shows your orders.
-              </p>
-            </div>
-          )}
-          {currentView === "riders" && currentUser.role === "admin" && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-bold mb-4">Riders Management</h2>
-              <p className="text-gray-600">
-                Rider management is available in the main dashboard view above.
-              </p>
-            </div>
-          )}
-          {currentView === "analytics" && currentUser.role === "admin" && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-bold mb-4">Analytics</h2>
-              <p className="text-gray-600">
-                Analytics dashboard coming soon...
-              </p>
-            </div>
-          )}
-          {currentView === "settings" && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-bold mb-4">Settings</h2>
-              <p className="text-gray-600">Settings page coming soon...</p>
-            </div>
-          )}
-        </main>
+          <button className="w-full py-3 rounded-xl bg-secondary text-white font-bold opacity-90 hover:opacity-100 transition-opacity">
+            Track Delivery
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default DeliveryDashboard;
+// --- SHARED STAT CARD ---
+const StatCard = ({ title, value, growth, icon: Icon }) => (
+  <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 group hover:border-primary/50 transition-all cursor-default">
+    <div className="flex justify-between items-start mb-4">
+      <div className="p-3 bg-gray-50 rounded-2xl group-hover:bg-primary/20 transition-all">
+        <Icon size={24} className="text-secondary" />
+      </div>
+      <div className="flex items-center text-green-500 text-xs font-bold bg-green-50 px-2 py-1 rounded-lg">
+        <TrendingUp size={12} className="mr-1" /> {growth}
+      </div>
+    </div>
+    <p className="text-gray-400 text-sm font-medium">{title}</p>
+    <h3 className="text-3xl font-black text-secondary mt-1">{value}</h3>
+  </div>
+);
+
+// --- MAIN DASHBOARD HOME COMPONENT ---
+const DashboardHome = () => {
+  const { role, isLoading, user } = useRole();
+  console.log(role);
+  
+  if (isLoading) return <LoadingSpinner fullScreen />;
+  if (!user)
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <p className="text-gray-400 font-medium">
+          Authentication required. Please log in.
+        </p>
+      </div>
+    );
+
+  return (
+    <div className="">
+      {role === "admin" && <AdminOverview user={user} />}
+      {role === "delivery" && <RiderOverview user={user} />}
+      {role === "user" && <CustomerOverview user={user} />}
+    </div>
+  );
+};
+
+export default DashboardHome;

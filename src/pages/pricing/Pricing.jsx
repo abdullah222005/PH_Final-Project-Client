@@ -30,12 +30,12 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen py-8 md:py-12 lg:py-16 px-6">
+    <div className="bg-gray-50 min-h-screen py-8 md:py-12 lg:py-16 px-4 md:px-6">
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">
           Pricing Plans
         </h2>
-        <h1 className="text-4xl md:text-6xl font-bold text-secondary mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-6">
           Simple, Transparent <br /> Rates.
         </h1>
         <p className="text-gray-500 text-lg max-w-2xl mx-auto">

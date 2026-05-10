@@ -51,7 +51,7 @@ const Services = () => {
   return (
     <div className="bg-base-100">
       {/* Hero Section */}
-      <section className="bg-secondary py-8 md:py-12 lg:py-16 mb-8 md:mb-12 md:mb-16 px-6 text-center">
+      <section className="bg-secondary py-8 md:py-12 lg:py-16 mb-8 md:mb-12 lg:mb-16 px-6 text-center">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
           Logistics Solutions for{" "}
           <span className="text-primary">Every Need</span>

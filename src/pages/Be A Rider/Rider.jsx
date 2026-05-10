@@ -58,9 +58,9 @@ const Rider = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-2xl shadow-xl overflow-hidden p-6 md:p-12">
+    <div className="min-h-screen py-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 rounded-2xl overflow-hidden">
           {/* Header and Image Section */}
           <div className="text-center lg:text-left mb-8 lg:mb-0 lg:pr-12 md:col-span-2">
             <h1 className="text-2xl text-center md:text-4xl font-semibold text-gray-800 leading-tight">
@@ -73,7 +73,7 @@ const Rider = () => {
             </p>
           </div>
           {/* Form Section */}
-          <div className="mt-8">
+          <div className="mt-8 md:mt-12 lg:mt-16">
             <h2 className="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">
               Tell us about yourself
             </h2>
@@ -300,10 +300,25 @@ const Rider = () => {
               <div className="form-control pt-4">
                 <button
                   type="submit"
-                  className="btn btn-lg bg-green-500 text-white hover:bg-green-600 border-none"
+                  className="
+      btn btn-lg border-none bg-green-500 text-white
+      relative overflow-hidden group
+      transition-all duration-300 ease-out
+      hover:bg-green-600 hover:scale-[1.03] 
+      hover:shadow-[0_10px_20px_-5px_rgba(34,197,94,0.4)]
+      active:scale-95
+    "
                 >
-                  {" "}
-                  Submit Application
+                  {/* Button Text with slide-up effect */}
+                  <span className="relative z-10 flex items-center gap-2 group-hover:-translate-y-[2px] transition-transform duration-300">
+                    Submit Application
+                  </span>
+
+                  {/* Subtle Shine Sweep */}
+                  <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-40 group-hover:animate-shine" />
+
+                  {/* Bottom Glow Line */}
+                  <div className="absolute bottom-0 left-0 w-0 h-1 bg-white/30 transition-all duration-500 group-hover:w-full" />
                 </button>
               </div>
             </form>

@@ -31,6 +31,11 @@ const Navbar = () => {
     // Navlinks Here
     <>
       <li>
+        <NavLink to='/'>
+        Home
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/services" style={getLinkStyle}>
           Services
         </NavLink>
@@ -57,15 +62,14 @@ const Navbar = () => {
       </li>
       {
         user && <>
-          <li><NavLink to='/dashboard/my-parcels'>My Parcels</NavLink></li>
           <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
         </>
       }
     </>
   );
   return (
-    <div className="bg-base-100 border-b-2 border-gray-300">
-      <div className="navbar max-w-7xl mx-auto px-6 shadow-sm">
+    <div className="bg-[#FCFAE0]/50 border-b-2 border-gray-300 sticky top-0 z-100">
+      <div className="navbar max-w-7xl mx-auto px-4 md:px-6 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
